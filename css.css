@@ -1,0 +1,32 @@
+div{
+    background-color: wheat;
+    font-size: 64pt;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+main{
+    position: absolute;
+    grid-template-columns: repeat(4,100px);
+    grid-template-rows: repeat(3,100px);
+    width: 430px;
+    max-width: 430px;
+    height: 320px;
+    max-height: 320px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: auto;
+    display: grid;
+    background-color: burlywood;
+    grid-template: auto auto;
+    gap: 10px 10px;
+}
+#up{
+    position: relative;
+    animation: myfirst .4s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1 forwards;
+}
+@keyframes myfirst {
+    0%{top:0px}
+    100%{top:-110px}
+  }

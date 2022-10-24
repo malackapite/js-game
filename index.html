@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css.css" />
+  </head>
+
+  <body onkeydown="nyom()">
+    <main>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id="x">x</div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+      <div id=""></div>
+    </main>
+  </body>
+  <script>
+    var tomb = new Array();
+    var ido = new Array();
+    ido.push(Date.now());
+    var hely = 8;
+    var kor=0;
+
+    function nyom() {
+      if (event.key == "ArrowUp" && hely > 4) {
+        a(-4,true);
+      }
+
+      if (event.key == "ArrowLeft" && hely % 4 != 1) {
+        a(-1,true);
+      }
+      if (event.key == "ArrowRight" && hely % 4 != 0) {
+        a(1,true);
+      }
+      if (event.key == "ArrowDown" && hely <= 8) {
+        a(4,true);
+      }
+      if (hely == 5) {
+        hely = 8;
+        a(0,false);
+        myLoop();
+      }
+    }
+
+    function a(ax, arr) {
+      document.getElementById("x").innerHTML = "";
+      document.getElementById("x").id = "";
+      hely += ax;
+      document.getElementsByTagName("div")[hely - 1].id = "x";
+      document.getElementsByTagName("div")[hely - 1].innerHTML = 'x';
+      if(arr){
+        tomb.push(event.key);
+        ido.push(Date.now());
+      }
+    }
+    function b(ix) {
+      if (tomb[ix] == "ArrowUp") {
+        a(-4,false);
+      }
+      if (tomb[ix] == "ArrowLeft") {
+        a(-1,false);
+      }
+      if (tomb[ix] == "ArrowRight") {
+        a(1,false);
+      }
+      if (tomb[ix] == "ArrowDown") {
+        a(4,false);
+      }
+    }
+
+function myLoop() {   
+  setTimeout(function() {
+    b(kor);
+    kor++;               
+    if (kor < tomb.length) {      
+      myLoop();          
+    }                    
+  }, ido[kor+1]-ido[kor])
+}
+  </script>
+</html>
