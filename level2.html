@@ -15,12 +15,11 @@
         var tomb = [new Array(),new Array()];
         var ido = [new Array(),new Array()];
         ido[1].push(Date.now());
-        var hely = 12;
-        var kor = 0;
         var melyikX=1;
+        var hely= [29,12];
+        var kor = 0;
         ido[0]=[1666724710640, 1666724710922, 1666724713473, 1666724714385];
         tomb[0]=["ArrowLeft", "ArrowLeft", "ArrowLeft"];
-        var regiHely=29;
         var main = document.getElementsByTagName("main")[0];
         main.style.gridTemplate = "repeat(6,100px)/repeat(6,100px)";
         main.style.height = "650px";
@@ -30,80 +29,85 @@
         for (var ix = 0; ix < 36; ix++) {
             document.getElementsByTagName("main")[0].innerHTML += "<div></div>";
         }
-        document.getElementsByTagName("div")[11].innerHTML = "x";
-        document.getElementsByTagName("div")[1].innerHTML = "#";
-        document.getElementsByTagName("div")[13].innerHTML = "#";
-        document.getElementsByTagName("div")[18].innerHTML = "#";
-        document.getElementsByTagName("div")[24].innerHTML = "#";
-        document.getElementsByTagName("div")[30].innerHTML = "#";
-        document.getElementsByTagName("div")[23].innerHTML = "#";
-        document.getElementsByTagName("div")[29].innerHTML = "#";
-        document.getElementsByTagName("div")[35].innerHTML = "#";
-        document.getElementsByTagName("div")[7].innerHTML = "#";
+        var akadaly=[1,7,13,18,23,24,29,30,35];
+        kiIr();
 
         function nyom() {
-            irany(event.key, true);
-            ajto();
             if(event.key=="e")
                 {
                     if(melyikX==1)
                         {
                             melyikX--;
-                            document.getElementsByTagName("div")[hely - 1].innerHTML = "";
+                            document.getElementsByTagName("div")[hely[melyikX+1] - 1].innerHTML = "";
+                            myLoop();
                             tomb[melyikX]=new Array();
                             ido[melyikX]=new Array();
-                            hely=29;
+                            hely[melyikX]=29;
                             megy(0,false);
                         }
                     else
                     {
                         melyikX++;
-                        document.getElementsByTagName("div")[hely - 1].innerHTML = "";
-                            tomb[melyikX]=new Array();
-                            ido[melyikX]=new Array();
-                            hely=12;
-                            megy(0,false);
+                        document.getElementsByTagName("div")[hely[melyikX-1] - 1].innerHTML = "";
+                        myLoop();
+                        tomb[melyikX]=new Array();
+                        ido[melyikX]=new Array();
+                        hely[melyikX]=12;
+                        megy(0,false);
                     }
 
                 }
-            if (hely == 7) {
-                hely = 12;
+            kiIr(event.key, true);
+            if (hely[melyikX] == 7) {
+                hely[melyikX] = 12;
                 megy(0, false);
                 myLoop();
             }
         }
-
+        
+        function kiIr(szoveg, masol){
+            for (var ix = 0; ix < 36; ix++) {
+                document.getElementsByTagName("div")[ix].innerHTML = "";    
+            }
+            akadaly.forEach(a);
+            for(var ix=0;ix<2;ix++)
+            {
+                document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
+            }
+            ajto();
+            irany(szoveg,masol);
+        }
         function megy(mennyit, masol) {
-            document.getElementsByTagName("div")[hely - 1].innerHTML = "";
-            hely += mennyit;
-            document.getElementsByTagName("div")[hely - 1].innerHTML = 'x';
+            document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
+            hely[melyikX] += mennyit;
+            document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = 'x';
             if (masol) {
                 tomb[melyikX].push(event.key);
                 ido[melyikX].push(Date.now());
             }
         }
         function irany(szoveg, masol) {
-            if (szoveg == "ArrowUp" && hely > 6 &&
-                document.getElementsByTagName("div")[hely - 7].innerHTML != "#") {
+            if (szoveg == "ArrowUp" && hely[melyikX] > 6 &&
+                document.getElementsByTagName("div")[hely[melyikX] - 7].innerHTML != "#") {
                 megy(-6, masol);
             }
-            else if (szoveg == "ArrowLeft" && hely % 6 != 1 &&
-                document.getElementsByTagName("div")[hely - 2].innerHTML != "#") {
+            else if (szoveg == "ArrowLeft" && hely[melyikX] % 6 != 1 &&
+                document.getElementsByTagName("div")[hely[melyikX] - 2].innerHTML != "#") {
                 megy(-1, masol);
             }
-            else if (szoveg == "ArrowRight" && hely % 6 != 0 &&
-                document.getElementsByTagName("div")[hely].innerHTML != "#") {
+            else if (szoveg == "ArrowRight" && hely[melyikX] % 6 != 0 &&
+                document.getElementsByTagName("div")[hely[melyikX]].innerHTML != "#") {
                 megy(1, masol);
             }
-            else if (szoveg == "ArrowDown" && hely <= 30 &&
-                document.getElementsByTagName("div")[hely + 5].innerHTML != "#") {
+            else if (szoveg == "ArrowDown" && hely[melyikX] <= 30 &&
+                document.getElementsByTagName("div")[hely[melyikX] + 5].innerHTML != "#") {
                 megy(6, masol);
             }
         }
 
         function myLoop() {
             setTimeout(function () {
-                irany(tomb[melyikX][kor], false);
+                kiIr(tomb[melyikX][kor], false);
                 kor++;
                 if (kor < tomb[melyikX].length) {
                     myLoop();
@@ -117,7 +121,10 @@
             else
                 document.getElementsByTagName("div")[7].innerHTML = "#";
         }
-
+        function a(item,index)
+        {
+            document.getElementsByTagName("div")[item].innerHTML = "#";
+        }
     </script>
     <script type="module">
         import myJson from "./example.json" assert { type: "json" };
