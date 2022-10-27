@@ -29,7 +29,7 @@
         for (var ix = 0; ix < 36; ix++) {
             document.getElementsByTagName("main")[0].innerHTML += "<div></div>";
         }
-        var akadaly=[1,7,13,18,23,24,29,30,35];
+        var akadaly=[1,13,18,23,24,29,30,35,7];
         kiIr();
 
         function nyom() {
@@ -37,21 +37,23 @@
                 {
                     if(melyikX==1)
                         {
+                            // myLoop();
                             melyikX--;
                             document.getElementsByTagName("div")[hely[melyikX+1] - 1].innerHTML = "";
-                            myLoop();
                             tomb[melyikX]=new Array();
                             ido[melyikX]=new Array();
+                            ido[melyikX].push(Date.now());
                             hely[melyikX]=29;
                             megy(0,false);
                         }
                     else
                     {
+                        // myLoop();
                         melyikX++;
                         document.getElementsByTagName("div")[hely[melyikX-1] - 1].innerHTML = "";
-                        myLoop();
                         tomb[melyikX]=new Array();
                         ido[melyikX]=new Array();
+                        ido[melyikX].push(Date.now());
                         hely[melyikX]=12;
                         megy(0,false);
                     }
@@ -59,8 +61,9 @@
                 }
             kiIr(event.key, true);
             if (hely[melyikX] == 7) {
-                hely[melyikX] = 12;
+                hely[melyikX] = 29-melyikX*17;
                 megy(0, false);
+                kor=0;
                 myLoop();
             }
         }
@@ -69,12 +72,12 @@
             for (var ix = 0; ix < 36; ix++) {
                 document.getElementsByTagName("div")[ix].innerHTML = "";    
             }
-            akadaly.forEach(a);
             for(var ix=0;ix<2;ix++)
             {
                 document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
             }
             ajto();
+            akadaly.forEach(a);
             irany(szoveg,masol);
         }
         function megy(mennyit, masol) {
@@ -112,14 +115,23 @@
                 if (kor < tomb[melyikX].length) {
                     myLoop();
                 }
-            }, ido[kor + 1] - ido[kor])
+            }, ido[melyikX][kor + 1] - ido[melyikX][kor])
         }
 
         function ajto() {
             if (document.getElementsByTagName("div")[10].innerHTML == "x")
-                document.getElementsByTagName("div")[7].innerHTML = "";
+                {
+                    var value = 7
+
+                    
+
+                    akadaly = akadaly.filter(function(item) {
+                        return item !== value
+                    })
+
+                }
             else
-                document.getElementsByTagName("div")[7].innerHTML = "#";
+                akadaly.push(7);
         }
         function a(item,index)
         {
