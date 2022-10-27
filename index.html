@@ -74,7 +74,9 @@ function myLoop() {
     kor++;               
     if (kor < tomb.length) {      
       myLoop();          
-    }                    
+    }
+    else
+    {setTimeout(function() {window.open("level2.html", "_self");},1000)}                    
   }, ido[kor+1]-ido[kor])
 }
   </script>
