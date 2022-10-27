@@ -12,6 +12,7 @@
 <body onkeydown="nyom()">
     <main></main>
     <script>
+        //Viisikulmiolla on viisi kärkeä, mutta viisi kärkeä ei muodosta viisikulmiota ඞ
         var tomb = [new Array(),new Array()];
         var ido = [new Array(),new Array()];
         ido[1].push(Date.now());
@@ -35,34 +36,14 @@
         function nyom() {
             if(event.key=="e")
                 {
-                    if(melyikX==1)
-                        {
-                            kor=0;
-                            myLoop();
-                            melyikX--;
-                            document.getElementsByTagName("div")[hely[melyikX+1] - 1].innerHTML = "";
-                            tomb[melyikX]=new Array();
-                            ido[melyikX]=new Array();
-                            ido[melyikX].push(Date.now());
-                            hely[melyikX]=29;
-                            megy(0,false);
-                        }
-                    else
-                    {
-                        kor=0;
-                        myLoop();
-                        melyikX++;
-                        document.getElementsByTagName("div")[hely[melyikX-1] - 1].innerHTML = "";
-                        tomb[melyikX]=new Array();
-                        ido[melyikX]=new Array();
-                        ido[melyikX].push(Date.now());
-                        hely[melyikX]=12;
-                        megy(0,false);
-                    }
-
+                    hely[melyikX] = 29-melyikX*17;
+                    megy(0, false);
+                    kor=0;
+                    myLoop();
                 }
             kiIr(event.key, true);
             if (hely[melyikX] == 7) {
+                document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
                 hely[melyikX] = 29-melyikX*17;
                 megy(0, false);
                 kor=0;
@@ -74,6 +55,7 @@
             for (var ix = 0; ix < 36; ix++) {
                 document.getElementsByTagName("div")[ix].innerHTML = "";    
             }
+            document.getElementsByTagName("div")[6].style.background="#ffa500";
             for(var ix=0;ix<2;ix++)
             {
                 document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
@@ -117,6 +99,10 @@
                 if (kor < tomb[melyikX].length) {
                     myLoop();
                 }
+                else
+                {
+                    torol();
+                }
             }, ido[melyikX][kor + 1] - ido[melyikX][kor])
         }
 
@@ -135,10 +121,22 @@
             else
                 akadaly.push(7);
         }
+        
+        function torol(){
+            // document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
+            melyikX= Math.abs(melyikX-1);
+            tomb[melyikX]=new Array();
+            ido[melyikX]=new Array();
+            ido[melyikX].push(Date.now());
+            hely[melyikX]=29-melyikX*17;
+            megy(0,false);
+        }
+
         function a(item,index)
         {
             document.getElementsByTagName("div")[item].innerHTML = "#";
         }
+
     </script>
     <script type="module">
         import myJson from "./example.json" assert { type: "json" };
