@@ -7,6 +7,9 @@
   <body onkeydown="nyom()">
     <main>
     </main>
+    <span id="a">*</span>
+    <span id="b">*</span>
+    <span id="c">*</span>
   </body>
   <script>
     var tomb = new Array();
@@ -18,7 +21,7 @@
     {
       document.getElementsByTagName('main')[0].innerHTML+='<div></div>';
     }
-    document.getElementsByTagName("div")[4].style.background="#ffa500";
+    document.getElementsByTagName("div")[4].style.background="#101010";
     document.getElementsByTagName('div')[7].innerHTML="x";
     document.getElementsByTagName('div')[7].id="x";
     function nyom() {
@@ -76,8 +79,17 @@ function myLoop() {
       myLoop();          
     }
     else
-    {setTimeout(function() {window.open("level2.html", "_self");},1000)}                    
+    {
+      var divek=document.getElementsByTagName('div');
+      for(var ix=0;ix<divek.length;ix++)
+        divek[ix].classList.add('el');
+      setTimeout(el,3000);
+    }                    
   }, ido[kor+1]-ido[kor])
+  function el()
+  {
+    window.open("level2.html", "_self");
+  }
 }
   </script>
   <script type="module">

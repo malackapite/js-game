@@ -1,10 +1,15 @@
+html{
+    background-color: black;
+    color: white;
+}
 div{
-    background-color: wheat;
+    background-color: rgb(30, 30, 30);
     font-size: 64pt;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 main{
+    z-index: 1;
     position: absolute;
     grid-template-columns: repeat(4,100px);
     grid-template-rows: repeat(3,100px);
@@ -18,7 +23,7 @@ main{
     transform: translate(-50%, -50%);
     margin: auto;
     display: grid;
-    background-color: burlywood;
+    background-color: #606060;
     grid-template: auto auto;
     gap: 10px 10px;
 }
@@ -29,4 +34,39 @@ main{
 @keyframes myfirst {
     0%{top:0px}
     100%{top:-110px}
+  }
+#a{
+    position: relative;
+    top: 610px;
+    left: 900px;
+    animation: asd 25.3s linear;
+    animation-iteration-count: infinite;font-size: 64pt;
+}
+#b{
+    position: relative;
+    top: 630px;
+    left: 0;
+    animation: asd 21.7s linear;
+    animation-iteration-count: infinite;font-size: 64pt;
+}
+#c{
+    position: relative;
+    top: 590px;
+    left: 400px;
+    animation: asd 23.9s linear;
+    animation-iteration-count: infinite;font-size: 64pt;
+}
+@keyframes asd{
+    100%{top:-500px;}
+}
+
+.el{
+    position: relative;
+    animation: mymove 2.3s 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+@keyframes mymove {
+    from {top: 0px;}
+    to {top: -500px;}
   }

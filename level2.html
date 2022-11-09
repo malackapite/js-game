@@ -39,7 +39,8 @@
                     hely[melyikX] = 29-melyikX*17;
                     megy(0, false);
                     kor=0;
-                    myLoop();
+                    myLoop(tomb[melyikX],ido[melyikX],kor);
+
                 }
             kiIr(event.key, true);
             if (hely[melyikX] == 7) {
@@ -47,7 +48,7 @@
                 hely[melyikX] = 29-melyikX*17;
                 megy(0, false);
                 kor=0;
-                myLoop();
+                myLoop(melyikX);
             }
         }
         
@@ -91,19 +92,17 @@
                 megy(6, masol);
             }
         }
-
-        function myLoop() {
-            setTimeout(function () {
-                kiIr(tomb[melyikX][kor], false);
-                kor++;
-                if (kor < tomb[melyikX].length) {
-                    myLoop();
+        
+        //wrong melyikX
+        function myLoop(tombb,idoo,korr) {
+                setTimeout(function () {
+                kiIr(tombb[korr], false);
+                korr++;
+                if (korr < tombb.length) {
+                    myLoop(tombb,idoo,korr);
                 }
-                else
-                {
-                    torol();
-                }
-            }, ido[melyikX][kor + 1] - ido[melyikX][kor])
+                else{                    torol();}
+            }, idoo[korr + 1] - idoo[korr])
         }
 
         function ajto() {
