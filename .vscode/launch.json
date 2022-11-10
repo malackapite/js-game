@@ -8,7 +8,7 @@
             "type": "firefox",
             "request": "launch",
             "name": "Open level2.html",
-            "file": "C:\\Users\\pc1\\Desktop\\New folder\\level2.html",
+            "file": "C:\\Users\\VeressMarcell(SZF_20\\Desktop\\js\\level2.html",
             "pathMappings": [
                 {
                     "url": "file:///C:/Users/pc1/Desktop/New%20folder",

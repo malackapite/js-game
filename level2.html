@@ -12,6 +12,15 @@
 <body onkeydown="nyom()">
     <main></main>
     <script>
+        class Level{
+            constructor(test) {
+            this.test = test;
+            }
+            getTest()
+            {
+                return this.test;
+            }
+        }
         //Viisikulmiolla on viisi kärkeä, mutta viisi kärkeä ei muodosta viisikulmiota ඞ
         var tomb = [new Array(),new Array()];
         var ido = [new Array(),new Array()];
@@ -48,7 +57,7 @@
                 hely[melyikX] = 29-melyikX*17;
                 megy(0, false);
                 kor=0;
-                myLoop(melyikX);
+                myLoop(tomb[melyikX],ido[melyikX],kor);
             }
         }
         
@@ -61,9 +70,18 @@
             {
                 document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
             }
-            ajto();
             akadaly.forEach(a);
             irany(szoveg,masol);
+            ajto();
+            for (var ix = 0; ix < 36; ix++) {
+                document.getElementsByTagName("div")[ix].innerHTML = "";    
+            }
+            document.getElementsByTagName("div")[6].style.background="#ffa500";
+            for(var ix=0;ix<2;ix++)
+            {
+                document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
+            }
+            akadaly.forEach(a);
         }
         function megy(mennyit, masol) {
             document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
@@ -93,7 +111,7 @@
             }
         }
         
-        //wrong melyikX
+        
         function myLoop(tombb,idoo,korr) {
                 setTimeout(function () {
                 kiIr(tombb[korr], false);
@@ -101,7 +119,9 @@
                 if (korr < tombb.length) {
                     myLoop(tombb,idoo,korr);
                 }
-                else{                    torol();}
+                else{
+                    torol();
+                }
             }, idoo[korr + 1] - idoo[korr])
         }
 
@@ -115,7 +135,7 @@
                     akadaly = akadaly.filter(function(item) {
                         return item !== value
                     })
-
+                   
                 }
             else
                 akadaly.push(7);
