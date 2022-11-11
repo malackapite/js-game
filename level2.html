@@ -10,18 +10,48 @@
 </head>
 
 <body onkeydown="nyom()">
-    <main></main>
+    <h1>blablabla</h1>
+    <main>
+    </main>
     <script>
         class Level{
-            constructor(test) {
-            this.test = test;
+            tomb=[new Array(),new Array()];
+            ido=[new Array(),new Array()];
+            melyikX=1;
+            hely= [29,12];
+            kor = 0;
+            // constructor(test) {
+            // this.test = test;
+            // }
+            get tomb(){
+                return this.tomb;
             }
-            getTest()
-            {
-                return this.test;
+            get ido(){
+                return this.ido;
+            }
+            get melyikX(){
+                return this.melyikX;
+            }
+            get hely(){
+                return this.hely;
+            }
+            set tomb(value){
+                this.tomb = value;
+            }
+            set ido(value){
+                this.ido = value;
+            }
+            set melyikX(value){
+                this.melyikX = value;
+            }
+            set hely(value){
+                this.hely = value;
             }
         }
+
         //Viisikulmiolla on viisi kärkeä, mutta viisi kärkeä ei muodosta viisikulmiota ඞ
+        
+        level= new Level();
         var tomb = [new Array(),new Array()];
         var ido = [new Array(),new Array()];
         ido[1].push(Date.now());
