@@ -10,14 +10,14 @@
 </head>
 
 <body onkeydown="nyom()">
-    <h1>blablabla</h1>
+    <h1></h1>
     <main>
     </main>
     <script>
         class Level{
             tomb=[new Array(),new Array()];
             ido=[new Array(),new Array()];
-            melyikX=1;
+            melyikX=0;
             hely= [29,12];
             kor = 0;
             // constructor(test) {
@@ -50,27 +50,33 @@
         }
 
         //Viisikulmiolla on viisi kärkeä, mutta viisi kärkeä ei muodosta viisikulmiota ඞ
+        szvg=["blablabla","asdasdasd"]
         
         level= new Level();
         var tomb = [new Array(),new Array()];
         var ido = [new Array(),new Array()];
-        ido[1].push(Date.now());
-        var melyikX=1;
-        var hely= [29,12];
+        ido[0].push(Date.now());
+        var melyikX=0;
+        var hely= [12];
         var kor = 0;
-        ido[0]=[1666724710640, 1666724710922, 1666724713473, 1666724714385];
-        tomb[0]=["ArrowLeft", "ArrowLeft", "ArrowLeft"];
+        //ido[0]=[1666724710640, 1666724710922, 1666724713473, 1666724714385];
+        //tomb[0]=["ArrowLeft", "ArrowLeft", "ArrowLeft"];
         var main = document.getElementsByTagName("main")[0];
         main.style.gridTemplate = "repeat(6,100px)/repeat(6,100px)";
         main.style.height = "650px";
         main.style.width = "650px";
         main.style.maxWidth = "650px";
         main.style.maxHeight = "650px";
-        for (var ix = 0; ix < 36; ix++) {
+        /*for (var ix = 0; ix < 36; ix++) {
+            document.getElementsByTagName("main")[0].innerHTML += "<div></div>";
+        }*/
+        for (var ix = 0; ix < 18; ix++) {
             document.getElementsByTagName("main")[0].innerHTML += "<div></div>";
         }
-        var akadaly=[1,13,18,23,24,29,30,35,7];
+        var divek=document.getElementsByTagName("div");
+        var akadaly=[1,13/*,18,23,24,29,30,35*/,7];
         kiIr();
+        divek[10].style.background="darkred";
 
         function nyom() {
             if(event.key=="e")
@@ -81,35 +87,56 @@
                     myLoop(tomb[melyikX],ido[melyikX],kor);
 
                 }
-            kiIr(event.key, true);
-            if (hely[melyikX] == 7) {
-                document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
-                hely[melyikX] = 29-melyikX*17;
-                megy(0, false);
-                kor=0;
+                if (hely[melyikX] == 7) {
+                    document.getElementsByTagName("div")[hely[melyikX] - 1].innerHTML = "";
+                    hely[melyikX] = 29-melyikX*17;
+                    megy(0, false);
+                    kor=0;
                 myLoop(tomb[melyikX],ido[melyikX],kor);
             }
+            //////////////////////////////
+            if(hely[melyikX] == 11)
+            {
+                divek[10].classList.remove("piros");
+                divek[10].classList.add("zold");
+                //setTimeout(function () {document.getElementsByTagName('h1')[0].innerHTML=szvg[0]},1000)
+                if(document.getElementsByTagName("div").length==18)
+                {
+                    for (var ix = 0; ix < 18; ix++) {
+                        document.getElementsByTagName("main")[0].innerHTML += "<div></div>";
+                        akadaly = akadaly.concat([18,23,24,29,30,35]);
+                    }
+                }
+            }
+            else{
+                divek[10].classList.add("piros");
+                divek[10].classList.remove("zold");
+            }
+            kiIr(event.key, true);
         }
         
         function kiIr(szoveg, masol){
-            for (var ix = 0; ix < 36; ix++) {
+            for (var ix = 0; ix < divek.length; ix++) {
                 document.getElementsByTagName("div")[ix].innerHTML = "";    
             }
             document.getElementsByTagName("div")[6].style.background="#ffa500";
-            for(var ix=0;ix<2;ix++)
+            for(var ix=0;ix<hely.length;ix++)
             {
                 document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
             }
             akadaly.forEach(a);
             irany(szoveg,masol);
             ajto();
-            for (var ix = 0; ix < 36; ix++) {
+            for (var ix = 0; ix < divek.length; ix++) {
                 document.getElementsByTagName("div")[ix].innerHTML = "";    
             }
             document.getElementsByTagName("div")[6].style.background="#ffa500";
-            for(var ix=0;ix<2;ix++)
+            for(var ix=0;ix<hely.length;ix++)
             {
                 document.getElementsByTagName("div")[hely[ix] - 1].innerHTML = 'x';
+                document.getElementsByTagName("div")[hely[ix] - 1].style.color="#666666";
+                if(melyikX==ix)
+                document.getElementsByTagName("div")[hely[ix] - 1].style.color="white";
             }
             akadaly.forEach(a);
         }
@@ -135,7 +162,7 @@
                 document.getElementsByTagName("div")[hely[melyikX]].innerHTML != "#") {
                 megy(1, masol);
             }
-            else if (szoveg == "ArrowDown" && hely[melyikX] <= 30 &&
+            else if (szoveg == "ArrowDown" && hely[melyikX] <= divek.length-6 &&
                 document.getElementsByTagName("div")[hely[melyikX] + 5].innerHTML != "#") {
                 megy(6, masol);
             }

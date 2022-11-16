@@ -82,7 +82,10 @@ function myLoop() {
     {
       var divek=document.getElementsByTagName('div');
       for(var ix=0;ix<divek.length;ix++)
-        divek[ix].classList.add('el');
+        {
+          divek[ix].classList.add('el');
+          divek[ix].style.animationDuration=(2+.15*ix+"s");
+        }
       setTimeout(el,3000);
     }                    
   }, ido[kor+1]-ido[kor])

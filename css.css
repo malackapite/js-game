@@ -1,6 +1,7 @@
 html{
     background-color: black;
     color: white;
+    overflow: hidden; 
 }
 div{
     background-color: rgb(30, 30, 30);
@@ -70,3 +71,17 @@ main{
     from {top: 0px;}
     to {top: -700px;}
   }
+@keyframes piros {
+    from {background-color: darkgreen;}
+    to {background-color: darkred;}
+  }
+@keyframes zold {
+    from {background-color: darkred;}
+    to {background-color: darkgreen;}
+  }
+.piros{
+    animation: piros 1s forwards;
+}
+.zold{
+    animation: zold 1s forwards;
+}
