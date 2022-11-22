@@ -91,7 +91,18 @@ function myLoop() {
   }, ido[kor+1]-ido[kor])
   function el()
   {
-    window.open("level2.html", "_self");
+    //window.open("level2.html", "_self");
+    document.getElementsByTagName('main')[0].classList.add('kov');
+    setTimeout(vissza,5000);
+  }
+  function vissza(){
+    document.getElementsByTagName('main')[0].style.gridTemplateColumns="repeat(6,100px)";
+    var divek=document.getElementsByTagName('div');
+    for(var ix=0;ix<divek.length;ix++)
+        {
+          divek[ix].classList.remove('el');
+          divek[ix].classList.add('vissza');
+        }
   }
 }
   </script>

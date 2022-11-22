@@ -63,14 +63,24 @@ main{
 
 .el{
     position: relative;
-    animation: mymove 2.3s 1;
+    animation: mymove 2.5s 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
 }
+.vissza{
+    position: relative;
+    animation: vissza 2.5s 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
 @keyframes mymove {
     from {top: 0px;}
-    to {top: -700px;}
+    to {top: -800px;}
   }
+@keyframes vissza {
+    from {top: -800px;}
+    to {top: 0px;}
+}
 @keyframes piros {
     from {background-color: darkgreen;}
     to {background-color: darkred;}
@@ -84,4 +94,35 @@ main{
 }
 .zold{
     animation: zold 1s forwards;
+}
+.kov{
+    animation: tabla 5s forwards;
+}
+@keyframes tabla {
+    0%{
+        width: 430px;
+    max-width: 430px;
+    height: 320px;
+    max-height: 320px;
+    }
+    25%{
+        width: 430px;
+        max-width: 430px;
+        height: 5px;
+        max-height: 5px;
+    }
+    50%{
+        /*height: 650px;*/
+        width: 650px;
+        max-width: 650px;
+        height: 5px;
+        max-height: 5px;
+        /* max-height: 650px; */
+    }
+    100%{
+        height: 320px;
+        max-height: 320px;
+        width: 650px;
+        max-width: 650px;
+    }
 }
