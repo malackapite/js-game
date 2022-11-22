@@ -95,6 +95,7 @@
                 myLoop(tomb[melyikX],ido[melyikX],kor);
             }
             //////////////////////////////
+            kiIr(event.key, true);
             if(hely[melyikX] == 11)
             {
                 divek[10].classList.remove("piros");
@@ -112,7 +113,6 @@
                 divek[10].classList.add("piros");
                 divek[10].classList.remove("zold");
             }
-            kiIr(event.key, true);
         }
         
         function kiIr(szoveg, masol){
