@@ -10,6 +10,7 @@
     <span id="a">*</span>
     <span id="b">*</span>
     <span id="c">*</span>
+    <span id="kor"></span>
   </body>
   <script>
     var tomb = new Array();
@@ -104,6 +105,10 @@ function myLoop() {
         {
           divek[ix].classList.remove('el');
           divek[ix].classList.add('vissza');
+          divek[ix].style.animationDuration=(2+.15*ix+"s");
+          if(divek[ix].innerHTML=="x")
+          divek[ix].style.animationDuration=("15s");
+          setTimeout(function(){document.getElementById("kor").classList.add("hatter")},15000)
         }
   }
 }

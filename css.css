@@ -112,12 +112,10 @@ main{
         max-height: 5px;
     }
     50%{
-        /*height: 650px;*/
         width: 650px;
         max-width: 650px;
         height: 5px;
         max-height: 5px;
-        /* max-height: 650px; */
     }
     100%{
         height: 320px;
@@ -125,4 +123,21 @@ main{
         width: 650px;
         max-width: 650px;
     }
+}
+@keyframes kor{
+    from{width: 0;height: 0;}
+    to{width: 2500px; height: 2500px;}
+}
+#kor{
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    background-color: darkslategray;
+    
+}
+.hatter{
+    animation: kor 5s forwards ease-out;
 }
