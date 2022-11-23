@@ -98,6 +98,8 @@ function myLoop() {
   function vissza(){
     document.getElementsByTagName('main')[0].style.gridTemplateColumns="repeat(6,100px)";
     var divek=document.getElementsByTagName('div');
+       for(var ix=0;ix<6;ix++)
+         document.getElementsByTagName('main')[0].innerHTML+=`<div></div>`;
     for(var ix=0;ix<divek.length;ix++)
         {
           divek[ix].classList.remove('el');
